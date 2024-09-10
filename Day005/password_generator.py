@@ -9,7 +9,7 @@ nr_letters = int(input("How many letters would you like in your password?\n"))
 nr_symbols = int(input(f"How many symbols would you like?\n"))
 nr_numbers = int(input(f"How many numbers would you like?\n"))
 
-password = ""
+password: str = ""
 
 for i in range(0, nr_letters):
     rl= randint(0, len(letters)-1)
@@ -25,7 +25,23 @@ for i in range(0, nr_numbers):
 
 print(password)
 
+
 # hard version mix up chosen characters
+shuffled_password: str = ""
+while True:
+    if len(password) == 0:
+        break
+
+    r = randint(0, len(password)-1) + 1
+    if r > 0 and len(password) > 1:
+        char = password[r-1:r]
+        shuffled_password += char
+        password = password.replace(char, "", 1)
+    else:
+        shuffled_password += password
+        break
+
+print(shuffled_password)
 
 
 
