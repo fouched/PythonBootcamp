@@ -1,4 +1,7 @@
 
+direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+text = input("Type your message:\n").lower()
+shift = int(input("Type the shift number:\n"))
+alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-shift = 10
-print("abcdefghijklmnopqrstuvwxyz"[-(26-shift+1)])
+print(alphabet[-(26-shift+1)])
