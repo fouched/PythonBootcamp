@@ -27,6 +27,7 @@ def decrypt(word: str, s: int):
 
     print(f"Decrypted: {decrypted}")
 
+
 if shift > 26:
     print("You cannot shift by more than 26")
 else:
