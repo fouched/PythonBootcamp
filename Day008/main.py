@@ -7,7 +7,7 @@ alphabet = "abcdefghijklmnopqrstuvwxyz"
 def encrypt(word: str, s: int):
     encrypted = ""
     for letter in word:
-        if letter == " ":
+        if letter not in alphabet:
             encrypted += " "
         else:
             idx = alphabet.index(letter)
@@ -19,7 +19,7 @@ def encrypt(word: str, s: int):
 def decrypt(word: str, s: int):
     decrypted = ""
     for letter in word:
-        if letter == " ":
+        if letter not in alphabet:
             decrypted += " "
         else:
             idx = alphabet.index(letter)
