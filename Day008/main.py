@@ -15,10 +15,30 @@ def encrypt(word: str, s: int):
             encrypted += " "
         else:
             idx = alphabet.index(letter)
-            print(f"Idx: {idx}")
             encrypted += alphabet[-(26-shift-idx)]
 
     print(f"Encrypted: {encrypted}")
 
 
-encrypt(text, shift)
+def decrypt(word: str, s: int):
+    if s > 26:
+        print("You cannot shift by more than 26")
+        return
+
+    decrypted = ""
+    for letter in word:
+        if letter == " ":
+            decrypted += " "
+        else:
+            idx = alphabet.index(letter)
+            decrypted += alphabet[idx - shift]
+
+    print(f"Decrypted: {decrypted}")
+
+
+if direction == "encode":
+    encrypt(text, shift)
+elif direction == "decode":
+    decrypt(text, shift)
+else:
+    print("Invalid input")
