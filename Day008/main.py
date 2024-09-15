@@ -5,10 +5,6 @@ shift = int(input("Type the shift number:\n"))
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 def encrypt(word: str, s: int):
-    if s > 26:
-        print("You cannot shift by more than 26")
-        return
-
     encrypted = ""
     for letter in word:
         if letter == " ":
@@ -21,10 +17,6 @@ def encrypt(word: str, s: int):
 
 
 def decrypt(word: str, s: int):
-    if s > 26:
-        print("You cannot shift by more than 26")
-        return
-
     decrypted = ""
     for letter in word:
         if letter == " ":
@@ -35,10 +27,12 @@ def decrypt(word: str, s: int):
 
     print(f"Decrypted: {decrypted}")
 
-
-if direction == "encode":
-    encrypt(text, shift)
-elif direction == "decode":
-    decrypt(text, shift)
+if shift > 26:
+    print("You cannot shift by more than 26")
 else:
-    print("Invalid input")
+    if direction == "encode":
+        encrypt(text, shift)
+    elif direction == "decode":
+        decrypt(text, shift)
+    else:
+        print("Invalid input")
