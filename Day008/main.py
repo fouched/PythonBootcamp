@@ -11,7 +11,7 @@ def encrypt(word: str, s: int):
             encrypted += " "
         else:
             idx = alphabet.index(letter)
-            encrypted += alphabet[-(26-shift-idx)]
+            encrypted += alphabet[-(26-idx-s)]
 
     print(f"Encrypted: {encrypted}")
 
@@ -23,7 +23,7 @@ def decrypt(word: str, s: int):
             decrypted += " "
         else:
             idx = alphabet.index(letter)
-            decrypted += alphabet[idx - shift]
+            decrypted += alphabet[idx - s]
 
     print(f"Decrypted: {decrypted}")
 
