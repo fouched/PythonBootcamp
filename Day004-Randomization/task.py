@@ -25,6 +25,8 @@ import random
 
 # nr = random.randint(0, len(states)-1)
 # print(states[nr])
+
+# MUCH easier way
 # print(random.choice(states))
 
 fruits = ["Strawberries", "Nectarines", "Apples", "Grapes", "Peaches", "Cherries"]
