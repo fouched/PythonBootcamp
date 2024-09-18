@@ -22,11 +22,11 @@ def start_game():
 
 
 def play_game() -> bool:
-    user_total = check_cards(player_cards)
+    user_total = check_total(player_cards)
     print("U:", player_cards, user_total)
 
-    check_cards(comp_cards)
-    comp_total = check_cards(comp_cards)
+    check_total(comp_cards)
+    comp_total = check_total(comp_cards)
     print("C:", comp_cards, comp_total)
 
     if comp_total == 21:
@@ -40,7 +40,7 @@ def play_game() -> bool:
     return True
 
 
-def check_cards(c: []) -> int:
+def check_total(c: []) -> int:
     total = 0
     for card in c:
         total += card
@@ -54,8 +54,8 @@ while play_game():
         player_cards.append(deal())
         print(player_cards)
     else:
-        user_total = check_cards(player_cards)
-        comp_total = check_cards(comp_cards)
+        user_total = check_total(player_cards)
+        comp_total = check_total(comp_cards)
         if user_total > comp_total:
             print("You win!!!")
             break
