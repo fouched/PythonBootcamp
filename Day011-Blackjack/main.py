@@ -1,8 +1,6 @@
 import random
 import art
 
-print(art.logo)
-
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 player_cards = []
 comp_cards = []
@@ -22,16 +20,19 @@ def start_game() -> bool:
     comp_cards.append(deal())
     print("C:", comp_cards[0])
 
-    if check_total(comp_cards) == 21:
+    if calc_score(comp_cards) == 21:
         return False
     else:
         return True
 
 
-def check_total(c: []) -> int:
-    total = 0
-    for card in c:
-        total += card
+def calc_score(current_cards) -> int:
+    total = sum(current_cards)
+
+    if total > 21 and 11 in current_cards:
+        current_cards.remove(11)
+        current_cards.append(1)
+        total = sum(current_cards)
 
     return total
 
@@ -47,7 +48,7 @@ def player_turn() -> bool:
 
 
 def computer_turn() -> bool:
-    comp_total = check_total(comp_cards)
+    comp_total = calc_score(comp_cards)
     if comp_total < 17:
         card = deal()
         comp_cards.append(card)
@@ -56,8 +57,8 @@ def computer_turn() -> bool:
         return False
 
 def print_final_score():
-    computer_total = check_total(comp_cards)
-    player_total = check_total(player_cards)
+    computer_total = calc_score(comp_cards)
+    player_total = calc_score(player_cards)
 
     print("")
     print("==============================")
@@ -81,19 +82,21 @@ def print_final_score():
 
 
 def play_game():
+    print(art.logo)
     cont_game = start_game()
 
     if cont_game:
         while player_turn():
-            print("Player:", player_cards)
-            if check_total(player_cards) > 21:
+            if calc_score(player_cards) > 21:
                 print("You bust!")
                 break
+            else:
+                print("Player:", player_cards)
 
-        if check_total(player_cards) <= 21:
+        if calc_score(player_cards) <= 21:
             while computer_turn():
                 print("Computer:", comp_cards)
-                if check_total(comp_cards) > 21:
+                if calc_score(comp_cards) > 21:
                     print("Computer bust!")
                     break
 
