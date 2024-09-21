@@ -27,8 +27,9 @@ def set_level() -> int:
 def play_game():
     print("Welcome to the Number Guessing Game!")
     print("I'm thinking of a number between 1 and 100.")
-    num_guesses = set_level()
     answer_num = random.randint(1, 100)
+
+    num_guesses = set_level()
 
     while num_guesses > 0:
         answer = make_guess(num_guesses, answer_num)
