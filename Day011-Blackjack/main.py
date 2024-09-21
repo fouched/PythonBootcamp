@@ -9,7 +9,7 @@ comp_cards = []
 def deal() -> int:
     return random.choice(cards)
 
-def start_game() -> bool:
+def start_game():
     player_cards.clear()
     player_cards.append(deal())
     player_cards.append(deal())
@@ -19,11 +19,6 @@ def start_game() -> bool:
     comp_cards.append(deal())
     comp_cards.append(deal())
     print("C:", comp_cards[0])
-
-    if calc_score(comp_cards) == 21:
-        return False
-    else:
-        return True
 
 
 def calc_score(current_cards) -> int:
@@ -49,7 +44,9 @@ def player_turn() -> bool:
 
 def computer_turn() -> bool:
     comp_total = calc_score(comp_cards)
-    if comp_total < 17:
+    if comp_total == 21:
+        return False
+    elif comp_total < 17:
         card = deal()
         comp_cards.append(card)
         return True
@@ -83,22 +80,21 @@ def print_final_score():
 
 def play_game():
     print(art.logo)
-    cont_game = start_game()
+    start_game()
 
-    if cont_game:
-        while player_turn():
-            if calc_score(player_cards) > 21:
-                print("You bust!")
+    while player_turn():
+        if calc_score(player_cards) > 21:
+            print("You bust!")
+            break
+        else:
+            print("Player:", player_cards)
+
+    if calc_score(player_cards) <= 21:
+        while computer_turn():
+            print("Computer:", comp_cards)
+            if calc_score(comp_cards) > 21:
+                print("Computer bust!")
                 break
-            else:
-                print("Player:", player_cards)
-
-        if calc_score(player_cards) <= 21:
-            while computer_turn():
-                print("Computer:", comp_cards)
-                if calc_score(comp_cards) > 21:
-                    print("Computer bust!")
-                    break
 
     print_final_score()
 
